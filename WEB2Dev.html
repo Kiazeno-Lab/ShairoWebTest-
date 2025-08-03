@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyPortfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #003300, #000000);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: #002200;
+    }
+    header h1 {
+      font-size: 2.5em;
+      color: #00ff80;
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #baffd9;
+      animation: fadeInUp 1s ease 0.5s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .nav-buttons button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background: #00ff80;
+      color: #002200;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .nav-buttons button:hover {
+      transform: scale(1.1);
+      background: #33ff99;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    section.visible {
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      border-bottom: 2px solid #00ff80;
+      padding-bottom: 5px;
+    }
+
+.projects {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scroll-behavior: smooth;
+}
+.projects::-webkit-scrollbar {
+  width: 6px;
+}
+.projects::-webkit-scrollbar-thumb {
+  background: #00ff80;
+  border-radius: 4px;
+}
+.projects .card {
+      background: #003300;
+      margin: 20px 0;
+      padding: 20px;
+      border-left: 5px solid #00ff80;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .projects .card:hover { background: #004d00; }
+
+    .skills span {
+      display: inline-block;
+      background: #004400;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 5px;
+      color: #00ff80;
+      animation: popIn 0.5s ease forwards;
+      opacity: 0;
+      cursor: pointer;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .contact a {
+      color: #00ff80;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #002200;
+      font-size: 0.9em;
+      color: #99ffc2;
+    }
+
+    #welcomeOverlay, #skillOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #00ff80;
+      font-size: 1.2em;
+      line-height: 1.6;
+      text-align: left;
+      padding: 40px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #welcomeOverlay button, #skillOverlay button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #00ff80;
+      color: #003300;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    #projectOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #00ff80;
+  font-size: 1.1em;
+  line-height: 1.7;
+  padding: 40px;
+  text-align: left;
+  z-index: 110;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#projectOverlay button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #00ff80;
+  color: #003300;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@keyframes rainbowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  padding: 20px;
+  margin: 20px 0;
+  background: #003300;
+  color: #00ff80;
+  border-left: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -3px; left: -3px;
+  right: -3px; bottom: -3px;
+  background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  animation: rainbowBorder 4s linear infinite;
+  border-radius: 12px;
+}
+
+.card:hover {
+  background: #004d00;
+}
+
+.nav-buttons button {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.nav-buttons button::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  z-index: -1;
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400%;
+  border-radius: 10px;
+  animation: rainbowBorder 5s linear infinite;
+}
+
+/* Robot styles */
+#navRobot {
+  width: 80px;
+  height: 100px;
+  margin: 20px auto;
+  position: relative;
+  animation: robotBounce 2s ease-in-out infinite;
+}
+
+#navRobot .head {
+  width: 60px;
+  height: 40px;
+  background: #00ff80;
+  border-radius: 8px 8px 4px 4px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#navRobot .eye {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+}
+#navRobot .eye.left { left: 18px; }
+#navRobot .eye.right { right: 18px; }
+
+#navRobot .antenna {
+  width: 4px;
+  height: 20px;
+  background: #00ff80;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#navRobot .antenna::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #00ff80;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  left: -2px;
+}
+
+#navRobot .body {
+  width: 50px;
+  height: 50px;
+  background: #00aaff;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 6px;
+}
+
+@keyframes robotBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+#motivationOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #00ff80;
+  font-size: 1.4em;
+  padding: 30px;
+  text-align: center;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#motivationOverlay button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #00ff80;
+  color: #003300;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Shairo Portfolio</h1>
+    <p>Web Developer & Game Builder</p>
+    <div class="nav-buttons">
+      <button onclick="scrollToSection('about')">About</button>
+      <button onclick="scrollToSection('projects')">Projects</button>
+      <button onclick="scrollToSection('skills')">Skills</button>
+      <button onclick="scrollToSection('contact')">Contact</button>
+    </div>
+    <div id="navRobot">
+  <div class="antenna"></div>
+  <div class="head">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+  </div>
+  <div class="body"></div>
+</div>
+  </header>
+
+  <section id="about"><h2>About Me</h2>
+    <p>
+  Hello! I'm an aspiring and passionate web developer who finds joy in transforming ideas into interactive digital experiences. With a strong foundation in HTML, CSS, and JavaScript, I enjoy building clean, responsive, and engaging websites that are both functional and beautiful. Whether it’s crafting a portfolio, experimenting with animations, or bringing user interfaces to life, I’m always eager to learn, explore new technologies, and take on creative challenges. I believe great design is not just about how it looks but how it works—simple, intuitive, and meaningful. I'm constantly improving, pushing boundaries, and turning concepts into code with enthusiasm and heart.</p>
+  </section>
+
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+  <div class="card" data-title="Space Blaster Game">Space Blaster 🚀</div>
+  <div class="card" data-title="Memory Match Game">Memory Match 🧠</div>
+  <div class="card" data-title="Match the Words">Match the Words 🧩</div>
+  <div class="card" data-title="Calculator App">Calculator 🧮</div>
+  <div class="card" data-title="To-Do Tracker">To-Do Tracker 📋</div>
+  <div class="card" data-title="Typing Speed Game">Typing Speed Game ⌨️</div>
+  <div class="card" data-title="Reaction Timer">Reaction Timer ⚡</div>
+</section>
+
+  <section id="skills" class="skills"><h2>Skills</h2>
+    <span onclick="showSkill('HTML5')" style="animation-delay:0.1s">HTML5</span>
+    <span onclick="showSkill('CSS3')" style="animation-delay:0.2s">CSS3</span>
+    <span onclick="showSkill('JavaScript')" style="animation-delay:0.3s">JavaScript</span>
+    <span onclick="showSkill('Canvas API')" style="animation-delay:0.4s">Canvas API</span>
+    <span onclick="showSkill('Responsive Design')" style="animation-delay:0.5s">Responsive Design</span>
+    <span onclick="showSkill('Touch Controls')" style="animation-delay:0.6s">Touch Controls</span>
+  </section>
+
+  <section id="contact" class="contact"><h2>Contact</h2>
+    <p>Let’s build something awesome together!</p>
+    <a href="mailto:shairoryukumuchi@gmail.com">shairoryukumuchi@gmail.com</a>
+    <a href="https://github.com/Shairo-lab">github.com/Shairo-lab</a>
+    <a href="https://twitter.com/yourhandle">🐦 Twitter</a>
+ <a href="https://www.facebook.com/shairo.ryukumuchi" target="_blank"> Facebook</a>
+  </section>
+
+  <footer>&copy; 2025 Shairo - Built In Acode><</footer>
+
+  <div id="welcomeOverlay">
+    <div id="welcomeText"></div>
+    <button onclick="closeWelcome()">Continue</button>
+  </div>
+
+  <div id="skillOverlay">
+    <div id="skillText"></div>
+    <button onclick="closeSkill()">Close</button>
+  </div>
+
+  <script>
+    const skillExplanations = {
+      "HTML5": `HTML5 is the core of every web page and the first tool I learned. It gives structure to content and lets me create accessible, mobile-friendly layouts that work everywhere. I chose it because it's universally supported, powerful, and perfect for beginners and pros alike.`,
+      "CSS3": `CSS3 is where the magic of design lives. I love how it turns plain HTML into polished, responsive experiences. From flexbox to animations, CSS3 lets me add personality and performance to my projects with just stylesheets.`,
+      "JavaScript": `JavaScript brings interactivity to the web. Whether it's form validation, game logic, or dynamic page updates — JavaScript powers it all. I chose it because it's flexible, fast, and the foundation of modern front-end development.`,
+      "Canvas API": `The Canvas API is my go-to for game development and custom visuals. It gives me pixel-level control to create animations, collision detection, and visual effects that regular HTML can’t do. Great for game logic, art, and experiments.`,
+      "Responsive Design": `Responsive Design ensures my websites work on any screen, from phones to big desktops. I prioritize mobile-first design because so many users are on mobile. This skill helps me make sure everyone gets a great experience.`,
+      "Touch Controls": `Touch input is essential for mobile apps and games. I love building things that feel good on phones — tap, swipe, drag. Touch control lets me create truly native-feeling experiences for mobile browsers and PWAs.`
+    };
+
+    function showSkill(skill) {
+      const overlay = document.getElementById('skillOverlay');
+      document.getElementById('skillText').textContent = skillExplanations[skill];
+      overlay.style.display = 'flex';
+      setTimeout(() => overlay.style.opacity = '1', 10);
+    }
+
+    function closeSkill() {
+      const overlay = document.getElementById('skillOverlay');
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.style.display = 'none', 500);
+    }
+
+    function closeWelcome() {
+      const overlay = document.getElementById('welcomeOverlay');
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.style.display = 'none', 500);
+    }
+
+    // Reveal sections on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('section').forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add('visible');
+        }
+      });
+    });
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => {
+    const title = card.getAttribute('data-title');
+    const overlay = document.getElementById('projectOverlay');
+    document.getElementById('projectText').textContent =
+      projectExplanations[title] || `This is a cool project I built for fun and practice.`;
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.style.opacity = '1', 10);
+  });
+});
+
+    window.dispatchEvent(new Event('scroll'));
+    
+    const projectExplanations = {
+  "Space Blaster Game": `I created the Space Blaster Game as a fun way to learn canvas-based game development. It's a simple shooting game inspired by classic arcade titles, and it helped me understand collision detection, animation loops, and responsive controls. I chose this project because I love blending interactivity with challenge, and I wanted a fast-paced, mobile-friendly game that works even in browsers like Acode. It’s perfect for testing real-time game mechanics and offers room for features like boss battles, scoring systems, and power-ups, More Repository On My Github.`,
+
+  "Memory Match Game": `The Memory Match Game is a logic-driven project meant to improve short-term memory and visual recall. I made it to learn event handling, DOM manipulation, and responsive design. Each card flip reinforces how state is managed in games — what’s flipped, what matches, and when to reset. I added emojis to keep it playful and accessible, and it helped me learn timing functions like setTimeout for animations More Repository On My Guthub.`,
+
+  "Match the Words": `This game helps with vocabulary and memory by matching related words or pairs. It was my introduction to using arrays and shuffle logic. It’s designed to be educational and interactive, perfect for younger users or language learners. I loved building this because it blends learning with gaming — and I plan to add support for multiple languages soon More Repository On My Github.`,
+
+  "Calculator App": `This calculator project helped me master math logic, button events, and state persistence across user inputs. I created it to practice JS string/number handling and conditional operations. It’s great for mobile use and has a super clean UI, More Repository On My Github.`,
+
+  "To-Do Tracker": `I built this to manage my own daily tasks while learning about localStorage. It’s a single-page app that helped me understand data persistence, DOM updating, and input validation. I use it myself in mobile browsers!, More Repository On My Github`,
+
+  "Typing Speed Game": `I created this game to test how fast people can type. It tracks speed and accuracy, and it helped me understand timing loops, text input events, and dynamic feedback. I want to add scoreboards and multiplayer later More Repository On My Github.`,
+
+  "Reaction Timer": `This is a pure reflex tester built to measure how quickly you can react. It uses timeouts and Date comparisons to calculate reaction time. I made this one because it’s a great way to explore performance and UI response without heavy logic More Repository On My Github.`
+};
+
+function closeProject() {
+  const overlay = document.getElementById('projectOverlay');
+  overlay.style.opacity = '0';
+  setTimeout(() => overlay.style.display = 'none', 500);
+}
+
+const motivationalQuotes = [
+  "Believe in yourself and all that you are.",
+  "You are capable of amazing things!",
+  "Keep going. You’re getting there.",
+  "Don’t stop until you’re proud.",
+  "Every day is a new chance to grow.",
+  "Push yourself, no one else will do it for you.",
+  "Success is the sum of small efforts, repeated."
+];
+
+document.getElementById('navRobot').addEventListener('click', () => {
+  const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+  document.getElementById('motivationText').textContent = randomQuote;
+  const overlay = document.getElementById('motivationOverlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => overlay.style.opacity = '1', 10);
+});
+
+function closeMotivation() {
+  const overlay = document.getElementById('motivationOverlay');
+  overlay.style.opacity = '0';
+  setTimeout(() => overlay.style.display = 'none', 500);
+}
+  </script>
+  
+<div id="projectOverlay">
+  <div id="projectText"></div>
+  <button onclick="closeProject()">Close</button>
+</div>
+
+<div id="motivationOverlay">
+  <div id="motivationText"></div>
+  <button onclick="closeMotivation()">Close</button>
+</div>
+</body>
+</html>
