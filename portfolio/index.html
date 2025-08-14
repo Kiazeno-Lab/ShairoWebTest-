@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A passionate, elegant portfolio that tells a story." />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span class="brand-text">Your Name</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="main">
+    <section class="section hero" aria-label="Hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="display reveal">
+            I craft digital experiences that feel
+            <span class="gradient-word">alive</span>.
+          </h1>
+          <p class="lead reveal" style="--d: 0.05s">
+            I’m <strong>Your Name</strong> — a designer & developer who blends artistry with
+            engineering to build thoughtful, human-centered products. Each pixel says
+            something; every interaction has a heartbeat.
+          </p>
+          <div class="cta-row reveal" style="--d: 0.1s">
+            <a class="btn btn-primary" href="#projects">Explore my work</a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+          <div class="social-row reveal" style="--d: 0.15s">
+            <a href="#" aria-label="LinkedIn" class="social">in</a>
+            <a href="#" aria-label="GitHub" class="social">GH</a>
+            <a href="#" aria-label="Dribbble" class="social">Db</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="blob-outer" aria-hidden="true">
+            <svg class="blob" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(300,300)">
+                <path d="M138.2,-154.5C173.8,-121.7,194.1,-68.8,200.5,-13.1C206.9,42.7,199.5,101.1,168,144.9C136.4,188.6,80.7,217.8,19.7,223.4C-41.2,228.9,-82.4,210.7,-127.9,186.6C-173.5,162.5,-223.4,132.5,-239.2,89.2C-255,46,-236.8,-10.5,-209.6,-64.2C-182.4,-117.9,-146.2,-168.6,-99.5,-199.9C-52.8,-231.2,4.5,-243.1,57.7,-228.4C110.8,-213.6,160,-172.3,138.2,-154.5Z" fill="url(#grad)"/>
+              </g>
+              <defs>
+                <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#e6397a" />
+                  <stop offset="100%" stop-color="#7c3aed" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="orb"></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <section id="about" class="section about" aria-label="About">
+      <div class="container about-grid">
+        <div class="about-photo reveal">
+          <div class="photo-frame tilt">
+            <div class="photo-shine"></div>
+            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="Portrait of Your Name" />
+          </div>
+        </div>
+        <div class="about-copy">
+          <h2 class="section-title reveal">A biography composed in pixels and presence</h2>
+          <p class="reveal" style="--d: 0.05s">
+            I grew up curious — sketchbook in one hand, command line in the other. Today, I design and
+            build experiences that make people feel seen, supported, and inspired. My process is
+            part ritual, part research: listen deeply, define clearly, iterate kindly, and ship with care.
+          </p>
+          <p class="reveal" style="--d: 0.1s">
+            Off screen, you’ll find me chasing light with a camera, cooking for friends, and
+            learning from the quiet wisdom of long walks. These moments outside the editor nourish the
+            work within it — they remind me that technology is at its best when it brings us back to our humanity.
+          </p>
+          <div class="signature reveal" style="--d: 0.15s">— Your Name</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects" aria-label="Projects">
+      <div class="container">
+        <h2 class="section-title reveal">Selected projects</h2>
+        <div class="projects-grid">
+          <article class="project-card tilt reveal" style="--d: 0.05s">
+            <div class="project-media">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project screenshot" />
+            </div>
+            <div class="project-content">
+              <h3>Resonance</h3>
+              <p>An immersive platform for creators to publish multimedia narratives with fluid motion and a focus on accessibility.</p>
+              <ul class="tags">
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>Framer Motion</li>
+              </ul>
+              <div class="actions">
+                <a class="btn btn-primary" href="#">View case study</a>
+                <a class="btn btn-ghost" href="#">Live ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card tilt reveal" style="--d: 0.1s">
+            <div class="project-media">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Project screenshot" />
+            </div>
+            <div class="project-content">
+              <h3>Pulse</h3>
+              <p>A wellness companion that translates daily habits into gentle guidance using thoughtful data visualizations.</p>
+              <ul class="tags">
+                <li>React</li>
+                <li>D3</li>
+                <li>Design Systems</li>
+              </ul>
+              <div class="actions">
+                <a class="btn btn-primary" href="#">View case study</a>
+                <a class="btn btn-ghost" href="#">Live ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card tilt reveal" style="--d: 0.15s">
+            <div class="project-media">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Project screenshot" />
+            </div>
+            <div class="project-content">
+              <h3>Kin</h3>
+              <p>A community app for mutual aid, built to foster trust, dignity, and belonging through small acts of care.</p>
+              <ul class="tags">
+                <li>Svelte</li>
+                <li>Firebase</li>
+                <li>UX Research</li>
+              </ul>
+              <div class="actions">
+                <a class="btn btn-primary" href="#">View case study</a>
+                <a class="btn btn-ghost" href="#">Live ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section skills" aria-label="Skills">
+      <div class="container">
+        <h2 class="section-title reveal">Craft and toolkit</h2>
+        <p class="section-intro reveal" style="--d: 0.05s">I seek the balance between poetry and precision — caring for the details that make interfaces a joy to use.</p>
+        <div class="chips reveal" style="--d: 0.1s">
+          <span class="chip">Design Systems</span>
+          <span class="chip">Design Tokens</span>
+          <span class="chip">Accessibility (WCAG)</span>
+          <span class="chip">Interaction Design</span>
+          <span class="chip">Performance</span>
+          <span class="chip">React / Next.js</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Node</span>
+          <span class="chip">GraphQL</span>
+          <span class="chip">Testing</span>
+        </div>
+        <div class="skill-bars reveal" style="--d: 0.15s">
+          <div class="skill"><span>Product Thinking</span><div class="bar"><i style="--v: 92%"></i></div></div>
+          <div class="skill"><span>System Design</span><div class="bar"><i style="--v: 88%"></i></div></div>
+          <div class="skill"><span>Animation</span><div class="bar"><i style="--v: 84%"></i></div></div>
+          <div class="skill"><span>Frontend Engineering</span><div class="bar"><i style="--v: 90%"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact" aria-label="Contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <h2 class="section-title reveal">Let’s build something meaningful</h2>
+          <p class="reveal" style="--d: 0.05s">
+            I’d love to hear about your idea, your team, or your story. Whether you’re exploring a spark
+            or ready to ship, I’ll meet you with care and curiosity.
+          </p>
+          <div class="contact-actions reveal" style="--d: 0.1s">
+            <button class="btn btn-ghost" data-copy="#emailValue">Copy email</button>
+            <span id="emailValue" class="email">you@yourdomain.com</span>
+          </div>
+        </div>
+        <form class="contact-form reveal" style="--d: 0.15s" action="mailto:you@yourdomain.com" method="post" enctype="text/plain">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="jane@email.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your vision…" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Your Name</span>
+      <span>Built with heart and curiosity</span>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
